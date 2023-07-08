@@ -15,7 +15,21 @@ module.exports = {
       },
       backgroundColor: {
         primary: "#FFC700",
+        main: "#0a0a0a",
       },
+
+      // that is animation class
+      animation: {
+        fade: "fadeIn 1s ease-in-out",
+      },
+
+      // that is actual animation
+      keyframes: (theme) => ({
+        fadeIn: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: " 1" },
+        },
+      }),
     },
   },
   plugins: [],

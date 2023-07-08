@@ -12,6 +12,7 @@ import { Dots } from "./Dots";
 import MainButton from "@/components/Button/Button";
 
 import Link from "next/link";
+import "../../app/globals.css";
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -102,7 +103,7 @@ export default function Hero() {
   const { classes } = useStyles();
 
   return (
-    <Container className={`${classes.wrapper} w-full m-0 `} fluid>
+    <Container className={`${classes.wrapper} w-full m-0 animate-fade`} fluid>
       <Dots className={classes.dots} style={{ left: 0, top: 0 }} />
       <Dots className={classes.dots} style={{ left: 60, top: 0 }} />
       <Dots className={classes.dots} style={{ left: 0, top: 140 }} />

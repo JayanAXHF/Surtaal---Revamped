@@ -199,13 +199,8 @@ export default function HeaderMegaMenu() {
             <Button>Find Booking</Button>
           </Group>
 
-          {/* <Burger
-            opened={drawerOpened}
-            onClick={toggleDrawer}
-            className={classes.hiddenDesktop}
-          /> */}
           <UnstyledButton
-            className={`${classes.hiddenDesktop} text-white text-xl`}
+            className={`${classes.hiddenDesktop} dark:text-white text-xl`}
             onClick={toggleDrawer}
           >
             {!drawerOpened ? (

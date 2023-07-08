@@ -3,7 +3,6 @@ import { CacheProvider } from "@emotion/react";
 import { useEmotionCache, MantineProvider } from "@mantine/core";
 import { useColorScheme } from "@mantine/hooks";
 import { useServerInsertedHTML } from "next/navigation";
-
 export default function RootStyleRegistry({
   children,
 }: {

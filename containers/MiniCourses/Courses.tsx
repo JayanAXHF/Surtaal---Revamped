@@ -24,7 +24,7 @@ const Courses = () => {
     },
   ];
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-8 py-20 px-10">
+    <section className="grid grid-cols-1 animation-fade lg:grid-cols-3 gap-4 lg:gap-8 py-20 px-10">
       <div className="grid gap-y-0">
         <div className="grid h-full content-center gap-y-8">
           <div className="grid gap-2 items-center content-center md:justify-normal justify-center">
@@ -43,11 +43,11 @@ const Courses = () => {
         </div>
       </div>
       <div className="lg:col-span-2 grid lg:grid-cols-2">
-        {displayCourses.map((course) => {
-          return <Card small {...course} />;
+        {displayCourses.map((course, i) => {
+          return <Card small {...course} key={i} />;
         })}
       </div>
-    </div>
+    </section>
   );
 };
 
