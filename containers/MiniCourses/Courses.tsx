@@ -2,7 +2,13 @@
 import Button from "@/components/Button/Button";
 import Card from "@/components/Card/Card";
 import { Title, Text } from "@mantine/core";
-import React from "react";
+import { motion, useAnimation } from "framer-motion";
+import React, { useEffect } from "react";
+import { useInView } from "react-intersection-observer";
+const framerVariant = {
+  visible: { opacity: 1, scale: 1 },
+  hidden: { opacity: 0, scale: 0 },
+};
 
 const Courses = () => {
   const displayCourses = [
@@ -23,8 +29,25 @@ const Courses = () => {
       description: "Learn the famous tabla and master how to play it",
     },
   ];
+  const control = useAnimation();
+  const [ref, inView] = useInView();
+
+  useEffect(() => {
+    if (inView) {
+      control.start("visible");
+    } else {
+      control.start("hidden");
+    }
+  }, [control, inView]);
   return (
-    <section className="grid grid-cols-1 animation-fade lg:grid-cols-3 gap-4 lg:gap-8 py-20 px-10">
+    <motion.section
+      variants={framerVariant}
+      className="grid grid-cols-1 animation-fade lg:grid-cols-3 gap-4 lg:gap-8 py-20 px-10"
+      initial="hidden"
+      animate={control}
+      ref={ref}
+      transition={{ ease: "easeIn", duration: 0.5 }}
+    >
       <div className="grid gap-y-0">
         <div className="grid h-full content-center gap-y-8">
           <div className="grid gap-2 items-center content-center md:justify-normal justify-center">
@@ -37,7 +60,7 @@ const Courses = () => {
               are available in both online and offline.
             </Text>
           </div>
-          <Button cartoon href="/courses" className="w-max h-max">
+          <Button cartoon link href="/courses" className="w-max h-max">
             View All Courses
           </Button>
         </div>
@@ -47,7 +70,7 @@ const Courses = () => {
           return <Card small {...course} key={i} />;
         })}
       </div>
-    </section>
+    </motion.section>
   );
 };
 

@@ -10,9 +10,11 @@ import {
 } from "@mantine/core";
 import { Dots } from "./Dots";
 import MainButton from "@/components/Button/Button";
-
+import "./Hero.module.css";
 import Link from "next/link";
 import "../../app/globals.css";
+import Modal from "../BookingModal/Modal";
+import { useDisclosure } from "@mantine/hooks";
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -101,21 +103,22 @@ const useStyles = createStyles((theme) => ({
 
 export default function Hero() {
   const { classes } = useStyles();
+  const [opened, { open, close }] = useDisclosure();
 
   return (
-    <Container className={`${classes.wrapper} w-full m-0 animate-fade`} fluid>
+    <Container className={`${classes.wrapper} m-0 animate-fade`} fluid>
       <Dots className={classes.dots} style={{ left: 0, top: 0 }} />
       <Dots className={classes.dots} style={{ left: 60, top: 0 }} />
       <Dots className={classes.dots} style={{ left: 0, top: 140 }} />
       <Dots className={classes.dots} style={{ right: 0, top: 60 }} />
 
       <div className={classes.inner}>
+        <Modal opened={opened} open={open} close={close} />
+
         <Title className={classes.title}>
           <Text
             component="span"
-            className={
-              "bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500"
-            }
+            className={`text-transparent  bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text clipText `}
             inherit
           >
             Music Classes
@@ -130,11 +133,13 @@ export default function Hero() {
           </Text>
         </Container>
 
-        <div className={`${classes.controls} flex flex-row gap-4 flex-grow-0`}>
-          <MainButton className={`${classes.control} `} href="/courses">
+        <div
+          className={`${classes.controls} flex flex-row gap-4 flex-grow-0 items-center content-center`}
+        >
+          <MainButton className={`${classes.control} `} link href="/courses">
             View Courses
           </MainButton>
-          <MainButton cartoon className="">
+          <MainButton cartoon className="" onClick={open}>
             Book Now
           </MainButton>
         </div>

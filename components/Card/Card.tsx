@@ -29,8 +29,8 @@ const Card = ({ title, description, small, ...props }: CardProps) => {
             <p className="mt-4 text-sm sm:text-base text-truncate">
               <span className="hidden md:block">{description}</span>
               <span className="md:hidden">
-                {description.substring(0, 175)}
-                {description.substring(0, 175).length !== description.length &&
+                {description.substring(0, 100)}
+                {description.substring(0, 100).length !== description.length &&
                   "..."}
               </span>
             </p>

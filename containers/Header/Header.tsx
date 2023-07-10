@@ -34,6 +34,8 @@ import {
   IconChevronDown,
 } from "@tabler/icons-react";
 import Link from "next/link";
+import Modal from "../BookingModal/Modal";
+import React from "react";
 
 const useStyles = createStyles((theme) => ({
   link: {
@@ -140,6 +142,7 @@ export default function HeaderMegaMenu() {
     useDisclosure(false);
   const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
   const { classes, theme } = useStyles();
+  const [opened, { open, close }] = useDisclosure();
 
   const links = mockdata.map((item) => (
     <UnstyledButton className={classes.subLink} key={item.title}>
@@ -160,127 +163,130 @@ export default function HeaderMegaMenu() {
   ));
 
   return (
-    <Box>
-      <Header height={80} px="md" className="dark:bg-[#0a0a0a] dark:text-white">
-        <Group position="apart" sx={{ height: "100%", width: "100%" }}>
-          <div className="flex gap-5">
-            <Image
-              src={Logo}
-              alt="logo"
-              width={30}
-              height={30}
-              className="dark:invert"
-            />
-            <Title variant="h1" className="dark:text-white">
-              Surtaal
-            </Title>
-          </div>
+    <React.Fragment>
+      <Modal opened={opened} open={open} close={close} />
+      <Box>
+        <Header
+          height={80}
+          px="md"
+          className="dark:bg-[#0a0a0a] dark:text-white"
+        >
+          <Group position="apart" sx={{ height: "100%", width: "100%" }}>
+            <div className="flex gap-5">
+              <Image
+                src={Logo}
+                alt="logo"
+                width={30}
+                height={30}
+                className="dark:invert"
+              />
+              <Title variant="h1" className="dark:text-white">
+                Surtaal
+              </Title>
+            </div>
+            <Group
+              sx={{ height: "100%" }}
+              spacing={2}
+              className={classes.hiddenMobile}
+              position="center"
+            >
+              <Link href="/" className={classes.link}>
+                Home
+              </Link>
+              <Link href="/courses" className={classes.link}>
+                Courses
+              </Link>
+              <Link href="/support" className={classes.link}>
+                Support
+              </Link>
+            </Group>
+            <Group className={classes.hiddenMobile} position="right">
+              <Button cartoon onClick={open}>
+                Book Now
+              </Button>
+              {/* <Modal opened={opened} open={open} close={close} /> */}
 
-          <Group
-            sx={{ height: "100%" }}
-            spacing={2}
-            className={classes.hiddenMobile}
-            position="center"
-          >
+              <Button>Find Booking</Button>
+            </Group>
+            <UnstyledButton
+              className={`${classes.hiddenDesktop} dark:text-white text-xl`}
+              onClick={toggleDrawer}
+            >
+              {!drawerOpened ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-8 h-8"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M3.75 6.75h16.5M3.75 12h16.5M12 17.25h8.25"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-8 h-8"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              )}
+            </UnstyledButton>
+          </Group>
+        </Header>
+        <Drawer
+          opened={drawerOpened}
+          onClose={closeDrawer}
+          size="100%"
+          pt={0}
+          className={classes.hiddenDesktop}
+          zIndex={1000000}
+          withCloseButton={false}
+        >
+          <Drawer.Header>
+            <Drawer.Title className="pt-0 mt-0">
+              <Title>Surtaal</Title>
+            </Drawer.Title>
+            <Drawer.CloseButton className="h-8 w-8" />
+          </Drawer.Header>
+          <ScrollArea h={`calc(100vh - ${rem(60)})`} mx="-md">
+            <Divider
+              my="sm"
+              color={theme.colorScheme === "dark" ? "dark.5" : "gray.1"}
+            />
             <Link href="/" className={classes.link}>
               Home
             </Link>
-
             <Link href="/courses" className={classes.link}>
               Courses
             </Link>
             <Link href="/support" className={classes.link}>
               Support
             </Link>
-          </Group>
+            <Divider
+              my="sm"
+              color={theme.colorScheme === "dark" ? "dark.5" : "gray.1"}
+            />
 
-          <Group className={classes.hiddenMobile} position="right">
-            <Button cartoon>Book Now</Button>
-            <Button>Find Booking</Button>
-          </Group>
-
-          <UnstyledButton
-            className={`${classes.hiddenDesktop} dark:text-white text-xl`}
-            onClick={toggleDrawer}
-          >
-            {!drawerOpened ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-8 h-8"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M3.75 6.75h16.5M3.75 12h16.5M12 17.25h8.25"
-                />
-              </svg>
-            ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-8 h-8"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            )}
-          </UnstyledButton>
-        </Group>
-      </Header>
-
-      <Drawer
-        opened={drawerOpened}
-        onClose={closeDrawer}
-        size="100%"
-        pt={0}
-        className={classes.hiddenDesktop}
-        zIndex={1000000}
-        withCloseButton={false}
-      >
-        <Drawer.Header>
-          <Drawer.Title className="pt-0 mt-0">
-            <Title>Surtaal</Title>
-          </Drawer.Title>
-          <Drawer.CloseButton className="h-8 w-8" />
-        </Drawer.Header>
-        <ScrollArea h={`calc(100vh - ${rem(60)})`} mx="-md">
-          <Divider
-            my="sm"
-            color={theme.colorScheme === "dark" ? "dark.5" : "gray.1"}
-          />
-
-          <Link href="/" className={classes.link}>
-            Home
-          </Link>
-
-          <Link href="/courses" className={classes.link}>
-            Courses
-          </Link>
-          <Link href="/support" className={classes.link}>
-            Support
-          </Link>
-
-          <Divider
-            my="sm"
-            color={theme.colorScheme === "dark" ? "dark.5" : "gray.1"}
-          />
-
-          <Group position="center" pb="xl" px="md">
-            <Button cartoon>Book Now</Button>
-            <Button>Find Booking</Button>
-          </Group>
-        </ScrollArea>
-      </Drawer>
-    </Box>
+            <Group position="center" pb="xl" px="md">
+              <Button cartoon>Book Now</Button>
+              <Button>Find Booking</Button>
+            </Group>
+          </ScrollArea>
+        </Drawer>
+      </Box>
+    </React.Fragment>
   );
 }

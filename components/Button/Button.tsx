@@ -12,6 +12,7 @@ interface ButtonProps {
   link?: boolean;
   href?: string;
   className?: string;
+  type?: string;
 }
 const Button = ({
   children,
@@ -23,19 +24,39 @@ const Button = ({
   link = false,
   href = "/",
   className = "",
+  type = "button",
   ...props
 }: ButtonProps) => {
   const theme = useMantineTheme();
 
+  const RootButton = ({ className, children }: any) => {
+    if (link) {
+      return (
+        <UnstyledButton
+          component={Link}
+          href={href}
+          className={className}
+          onClick={onClick}
+          type={type}
+        >
+          {children}
+        </UnstyledButton>
+      );
+    }
+    return (
+      <UnstyledButton className={className} onClick={onClick}>
+        {children}
+      </UnstyledButton>
+    );
+  };
+
   if (cartoon) {
     return (
-      <UnstyledButton
+      <RootButton
         className={
           "group relative inline-block focus:outline-none focus:ring " +
           className
         }
-        component={Link}
-        href={href}
       >
         <span className="absolute inset-0 translate-x-1.5 translate-y-1.5 bg-primary transition-transform group-hover:translate-y-0 group-hover:translate-x-0"></span>
 
@@ -45,12 +66,12 @@ const Button = ({
         >
           {children}
         </span>
-      </UnstyledButton>
+      </RootButton>
     );
   }
   if (primary) {
     return (
-      <UnstyledButton
+      <RootButton
         className={`inline-block rounded border border-[${theme.fn.darken(
           "#FFC700",
           0.1
@@ -60,17 +81,13 @@ const Button = ({
         )}  focus:outline-none focus:ring `}
       >
         {children}
-      </UnstyledButton>
+      </RootButton>
     );
   }
   return (
-    <UnstyledButton
-      className="  dark:text-white px-6 py-2.5 rounded-lg font-bold"
-      href={href}
-      component={Link}
-    >
+    <RootButton className="  dark:text-white px-6 py-2.5 rounded-lg font-bold">
       {children}
-    </UnstyledButton>
+    </RootButton>
   );
 };
 
