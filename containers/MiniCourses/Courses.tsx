@@ -7,7 +7,7 @@ import React, { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 const framerVariant = {
   visible: { opacity: 1, scale: 1 },
-  hidden: { opacity: 0, scale: 0 },
+  hidden: { opacity: 0 },
 };
 
 const Courses = () => {

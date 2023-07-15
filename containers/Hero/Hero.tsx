@@ -11,7 +11,7 @@ import {
 import { Dots } from "./Dots";
 import MainButton from "@/components/Button/Button";
 import "./Hero.module.css";
-import Link from "next/link";
+import "./Hero.module.scss";
 import "../../app/globals.css";
 import Modal from "../BookingModal/Modal";
 import { useDisclosure } from "@mantine/hooks";
@@ -57,7 +57,7 @@ const useStyles = createStyles((theme) => ({
     letterSpacing: -1,
     color: theme.colorScheme === "dark" ? theme.white : theme.black,
     marginBottom: theme.spacing.xs,
-    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+    // fontFamily: `Greycliff CF, ${theme.fontFamily}`,
 
     [theme.fn.smallerThan("xs")]: {
       fontSize: rem(35),
@@ -112,10 +112,11 @@ export default function Hero() {
       <Dots className={classes.dots} style={{ left: 0, top: 140 }} />
       <Dots className={classes.dots} style={{ right: 0, top: 60 }} />
 
+      {/* <div className="gradient-radial from-amber-500 to-rose-400 absolute inset-0 w-96  h-96 "></div> */}
       <div className={classes.inner}>
         <Modal opened={opened} open={open} close={close} />
 
-        <Title className={classes.title}>
+        <Title className={`${classes.title} tracking-wide`}>
           <Text
             component="span"
             className={`text-transparent  bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text clipText `}

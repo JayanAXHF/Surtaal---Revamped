@@ -70,7 +70,14 @@ export const list: Course[] = [
 ];
 const Courses = () => {
   const cards = list.map((course: Course, i: number) => {
-    return <Card title={course.name} description={course.desc} small={false} />;
+    return (
+      <Card
+        title={course.name}
+        description={course.desc}
+        small={false}
+        course={course}
+      />
+    );
   });
   return (
     <div>
@@ -96,7 +103,7 @@ const Courses = () => {
             </Text>
           </Title>
           <Title order={3} className="mb-10 text-center">
-            Unleash Your Potential and Expand Your Knowledge with Our Diverse
+            Unleash Your Potential and Expand Your Skill Set with Our Diverse
             Catalog of Courses!
           </Title>
           <div className="grid grid-flow-row grid-cols-1 lg:grid-cols-3 gap-3">

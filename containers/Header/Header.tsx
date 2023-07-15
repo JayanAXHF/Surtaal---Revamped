@@ -3,39 +3,23 @@ import Image from "next/image";
 import {
   createStyles,
   Header,
-  HoverCard,
   Group,
   UnstyledButton,
-  Text,
-  SimpleGrid,
-  ThemeIcon,
-  Anchor,
   Divider,
-  Center,
   Box,
-  Burger,
   Drawer,
-  Collapse,
   ScrollArea,
   rem,
   Title,
 } from "@mantine/core";
-import { MantineLogo } from "@mantine/ds";
 import { useDisclosure } from "@mantine/hooks";
 import Button from "@/components/Button/Button";
 import Logo from "../../assets/logo.svg";
-import {
-  IconNotification,
-  IconCode,
-  IconBook,
-  IconChartPie3,
-  IconFingerprint,
-  IconCoin,
-  IconChevronDown,
-} from "@tabler/icons-react";
+
 import Link from "next/link";
 import Modal from "../BookingModal/Modal";
 import React from "react";
+import FindModal from "../FindBooking/FindModal";
 
 const useStyles = createStyles((theme) => ({
   link: {
@@ -104,75 +88,32 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-const mockdata = [
-  {
-    icon: IconCode,
-    title: "Open source",
-    description: "This Pokémon’s cry is very loud and distracting",
-  },
-  {
-    icon: IconCoin,
-    title: "Free for everyone",
-    description: "The fluid of Smeargle’s tail secretions changes",
-  },
-  {
-    icon: IconBook,
-    title: "Documentation",
-    description: "Yanma is capable of seeing 360 degrees without",
-  },
-  {
-    icon: IconFingerprint,
-    title: "Security",
-    description: "The shell’s rounded shape and the grooves on its.",
-  },
-  {
-    icon: IconChartPie3,
-    title: "Analytics",
-    description: "This Pokémon uses its flying ability to quickly chase",
-  },
-  {
-    icon: IconNotification,
-    title: "Notifications",
-    description: "Combusken battles with the intensely hot flames it spews",
-  },
-];
-
 export default function HeaderMegaMenu() {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
     useDisclosure(false);
+
   const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
   const { classes, theme } = useStyles();
   const [opened, { open, close }] = useDisclosure();
-
-  const links = mockdata.map((item) => (
-    <UnstyledButton className={classes.subLink} key={item.title}>
-      <Group noWrap align="flex-start">
-        <ThemeIcon size={34} variant="default" radius="md">
-          <item.icon size={rem(22)} color={theme.fn.primaryColor()} />
-        </ThemeIcon>
-        <div>
-          <Text size="sm" fw={500}>
-            {item.title}
-          </Text>
-          <Text size="xs" color="dimmed">
-            {item.description}
-          </Text>
-        </div>
-      </Group>
-    </UnstyledButton>
-  ));
+  const [findModalOpened, { open: openFindModal, close: closeFindModal }] =
+    useDisclosure(false);
 
   return (
     <React.Fragment>
       <Modal opened={opened} open={open} close={close} />
+      <FindModal
+        opened={findModalOpened}
+        open={openFindModal}
+        close={closeFindModal}
+      />
       <Box>
         <Header
-          height={80}
+          height={90}
           px="md"
-          className="dark:bg-[#0a0a0a] dark:text-white"
+          className="dark:bg-[#0a0a0aff] dark:text-white backdrop-blur-xl backdrop-opacity-70"
         >
           <Group position="apart" sx={{ height: "100%", width: "100%" }}>
-            <div className="flex gap-5">
+            <Link href="/" className="flex gap-5">
               <Image
                 src={Logo}
                 alt="logo"
@@ -183,7 +124,7 @@ export default function HeaderMegaMenu() {
               <Title variant="h1" className="dark:text-white">
                 Surtaal
               </Title>
-            </div>
+            </Link>
             <Group
               sx={{ height: "100%" }}
               spacing={2}
@@ -204,9 +145,8 @@ export default function HeaderMegaMenu() {
               <Button cartoon onClick={open}>
                 Book Now
               </Button>
-              {/* <Modal opened={opened} open={open} close={close} /> */}
 
-              <Button>Find Booking</Button>
+              <Button onClick={openFindModal}>Find Booking</Button>
             </Group>
             <UnstyledButton
               className={`${classes.hiddenDesktop} dark:text-white text-xl`}
@@ -281,8 +221,10 @@ export default function HeaderMegaMenu() {
             />
 
             <Group position="center" pb="xl" px="md">
-              <Button cartoon>Book Now</Button>
-              <Button>Find Booking</Button>
+              <Button cartoon onClick={open}>
+                Book Now
+              </Button>
+              <Button onClick={openFindModal}>Find Booking</Button>
             </Group>
           </ScrollArea>
         </Drawer>

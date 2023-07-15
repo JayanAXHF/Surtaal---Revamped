@@ -1,16 +1,35 @@
-import { Title } from "@mantine/core";
+import { Modal, Title, Text, Grid } from "@mantine/core";
 import React from "react";
 import Button from "../Button/Button";
+import BookingModal from "@/containers/BookingModal/Modal";
+import { useDisclosure } from "@mantine/hooks";
 
 interface CardProps {
   title: string;
   description: string;
   small: boolean;
+  course?: {
+    desc: string;
+    name: string;
+    price: number;
+  };
 }
 
-const Card = ({ title, description, small, ...props }: CardProps) => {
+const Card = ({ title, course, description, small, ...props }: CardProps) => {
+  const [opened, { open, close }] = useDisclosure(false);
+  const [readMore, { open: openReadMore, close: closeReadMore }] =
+    useDisclosure(false);
   return (
     <div className={`p-5 ${small && "h-max w-auto"} h-max`}>
+      <BookingModal opened={opened} close={close} open={open} course={course} />
+      <ReadMoreModal
+        opened={readMore}
+        close={closeReadMore}
+        open={openReadMore}
+        name={title}
+        description={description}
+        price={course?.price as number}
+      ></ReadMoreModal>
       <div className="group relative block  h-56 sm:h-80 lg:h-96 w-auto cursor-pointer ">
         <span className="absolute inset-0 border-2 border-dashed border-black dark:border-white"></span>
 
@@ -37,10 +56,12 @@ const Card = ({ title, description, small, ...props }: CardProps) => {
 
             {!small && (
               <span className="flex justify-between mt-8 items-center content-center">
-                <Button cartoon className="h-min">
+                <Button cartoon className="h-min" onClick={open}>
                   Book Now
                 </Button>
-                <p className="font-bold">Read more</p>
+                <Button className="font-bold" onClick={openReadMore}>
+                  Read more
+                </Button>
               </span>
             )}
           </div>
@@ -51,3 +72,30 @@ const Card = ({ title, description, small, ...props }: CardProps) => {
 };
 
 export default Card;
+interface ModalProps {
+  name: string;
+  description: string;
+  price: number;
+  opened: boolean;
+  open: () => void;
+  close: () => void;
+}
+
+function ReadMoreModal({
+  name,
+  description,
+  price,
+  opened,
+  open,
+  close,
+}: ModalProps) {
+  return (
+    <Modal opened={opened} onClose={close} centered title="Read More">
+      <Grid className="gap-y-3 p-3">
+        <Title order={1}>{name}</Title>
+        <Text>{description}</Text>
+        <Text fz="lg">₹{price}</Text>
+      </Grid>
+    </Modal>
+  );
+}
