@@ -3,7 +3,7 @@ import { Footer } from "@/containers/Footer/Footer";
 import Header from "@/containers/Header/Header";
 import { AppShell, Title, Text, rem } from "@mantine/core";
 import React from "react";
-import * as CourseList from "./courses.json";
+
 import Card from "@/components/Card/Card";
 interface Course {
   desc: string;
@@ -11,7 +11,7 @@ interface Course {
   price: number;
 }
 
-export const list: Course[] = [
+const list: Course[] = [
   {
     desc: "The Gwalior Gharana is the oldest Gharana of Hindustani classical music.This gharana is the most famous gharana of Khayal singing. In this gharana, the initial note is made open and loud in the form of aakar. ",
     name: "Gwalior Gharana",

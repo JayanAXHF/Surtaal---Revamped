@@ -6,7 +6,6 @@ import { AppShell } from "@mantine/core";
 import Courses from "@/containers/MiniCourses/Courses";
 import TeacherShowcase from "@/containers/TeacherShowcase/TeacherShowcase";
 import { Footer } from "@/containers/Footer/Footer";
-import Modal from "@/containers/BookingModal/Modal";
 import { useDisclosure } from "@mantine/hooks";
 import React from "react";
 

@@ -1,9 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Alert, Flex, Notification, rem, Text } from "@mantine/core";
+import { Alert, Flex, rem } from "@mantine/core";
 import {
   Autocomplete,
   Modal as Dialog,
-  Group,
   Loader,
   NumberInput,
   ScrollArea,
@@ -12,7 +11,7 @@ import {
   Title,
 } from "@mantine/core";
 import { customAlphabet } from "nanoid";
-import { list } from "@/app/courses/page";
+
 import Button from "@/components/Button/Button";
 import { nanoid as Id } from "nanoid";
 import { database as db } from "../../firebase";
@@ -92,6 +91,63 @@ const Modal = ({ opened, open, close, course }: BookingModalProps) => {
       }, 1000);
     }
   };
+  const list: Course[] = [
+    {
+      desc: "The Gwalior Gharana is the oldest Gharana of Hindustani classical music.This gharana is the most famous gharana of Khayal singing. In this gharana, the initial note is made open and loud in the form of aakar. ",
+      name: "Gwalior Gharana",
+      price: 2000,
+    },
+    {
+      desc: "Starting from: br Grade 1 prarumbhik | Grade 2 praveshika pratam br Grade 3 praveshika puuren | Grade 4 Madhyama pratam br Grade 5 madhayam purren br Visharad pratam | Visharad purren | Alankaar purren | Alankaar purren (Exam and Practical fee ₹4000/-) .",
+      name: "Diploma Courses",
+      price: 3000,
+    },
+    {
+      desc: "Versatile Swar Alaapbr Bandish Styles br Swar Vishtaar br Raag Aalap br Bol Aalap br Swargmaan br Dhrupad Dhamaar",
+      name: "Classical Singing",
+      price: 2000,
+    },
+    {
+      desc: "Starting from the Alankaar Taan-Palte, Variety of Taan, Gamak, Mheed etc; Bollywood Playing | Classical Playing | Versatile Playing | Performer Playing",
+      name: "Harmonium",
+      price: 2000,
+    },
+    {
+      desc: "Basic Guitar Course | Intermediate Course | Advance Course; Streaming Pattern | Code Pattern | Tab; Reading Finger Pattern | Plugging Pattern Bollywood; Playing Classical | Playing Versatile | Playing Performer Playing",
+      name: "Guitar",
+      price: 2000,
+    },
+    {
+      desc: "Basic keyboard course | Intermediate keyboard course | Advance keyboard course; Left & Right Hand Use | Code pattern | Book Reading | Versatile playing; Bollywood Playing | Classical Playing | Versatile Playing | Perfomer Playing ",
+      name: "Keyboard",
+      price: 2000,
+    },
+    {
+      desc: "Hand Movement | BasicTaal: Kayda, Thukda Thiha  ",
+      name: "Tabla",
+      price: 2000,
+    },
+    {
+      desc: "Bollywood bhajan | Semi Classical bhajan | Hindi bhajan | Sufi bhajan | Raag based bhajan",
+      name: "Bhajan",
+      price: 2000,
+    },
+    {
+      desc: "Live Singing | Track Singing | Live Instrumental",
+      name: "Karaoke Singing",
+      price: 2000,
+    },
+    {
+      desc: "Live Singing | SOLO & DUET Song | Track Songs | Open Mick Singing | Fussion Songs | Mashup ",
+      name: "Bollywood Singing",
+      price: 2000,
+    },
+    {
+      desc: "Semi Classical Songs | Sufi | Bollywood Gazal",
+      name: "Bollywood-Classical Singing",
+      price: 2000,
+    },
+  ];
 
   const handleSubmit = async () => {
     const telRegex = /^[6789]\d{9}$/;

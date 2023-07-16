@@ -1,22 +1,8 @@
 import Button from "@/components/Button/Button";
-import {
-  CloseButton,
-  Flex,
-  Modal,
-  NumberInput,
-  Text,
-  Title,
-} from "@mantine/core";
+import { Flex, Modal, NumberInput, Text, Title } from "@mantine/core";
 import React, { useEffect } from "react";
 import { database } from "@/firebase";
-import {
-  ref,
-  get,
-  child,
-  query,
-  orderByChild,
-  equalTo,
-} from "firebase/database";
+import { ref, get, query, orderByChild, equalTo } from "firebase/database";
 interface BookingModalProps {
   opened: boolean;
   open: () => void;
