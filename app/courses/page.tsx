@@ -76,6 +76,7 @@ const Courses = () => {
         description={course.desc}
         small={false}
         course={course}
+        key={i}
       />
     );
   });
