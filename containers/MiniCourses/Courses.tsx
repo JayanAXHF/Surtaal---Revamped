@@ -52,7 +52,7 @@ const Courses = () => {
         <div className="grid h-full content-center gap-y-8">
           <div className="grid gap-2 items-center content-center md:justify-normal justify-center">
             <Title>
-              We offer a lot of courses. Online or Offline? You chose.
+              We offer a lot of courses. Online or Offline? You choose.
             </Title>
             <Text fz="lg">
               We offer a lot of quality courses in tons of different fields,
