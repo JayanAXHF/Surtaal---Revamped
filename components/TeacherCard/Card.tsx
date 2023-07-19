@@ -34,7 +34,7 @@ const Card = ({ name, description, photo, ...other }: CardProps) => {
         <div>
           <Image
             src={photo}
-            className=" shadow-sm h-full  aspect-video w-auto md:order-last order-1"
+            className=" shadow-sm h-full  lg:aspect-video w-auto md:order-last order-1"
             alt="teacher"
           />
         </div>
