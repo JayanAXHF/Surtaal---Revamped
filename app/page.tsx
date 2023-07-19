@@ -6,12 +6,9 @@ import { AppShell } from "@mantine/core";
 import Courses from "@/containers/MiniCourses/Courses";
 import TeacherShowcase from "@/containers/TeacherShowcase/TeacherShowcase";
 import { Footer } from "@/containers/Footer/Footer";
-import { useDisclosure } from "@mantine/hooks";
 import React from "react";
 
 export default function Home() {
-  const [opened, { open, close }] = useDisclosure();
-
   return (
     <React.Fragment>
       <AppShell

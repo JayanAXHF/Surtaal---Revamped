@@ -6,13 +6,7 @@ import {
   rem,
   Title,
 } from "@mantine/core";
-import {
-  IconBrandTwitter,
-  IconBrandYoutube,
-  IconBrandInstagram,
-} from "@tabler/icons-react";
-import { MantineLogo } from "@mantine/ds";
-import Link from "next/link";
+import { IconBrandYoutube, IconBrandInstagram } from "@tabler/icons-react";
 
 const useStyles = createStyles((theme) => ({
   footer: {
