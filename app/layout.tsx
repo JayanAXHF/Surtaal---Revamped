@@ -12,6 +12,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link
+  rel="icon"
+  href="/icon?<generated>"
+  type="image/<generated>"
+  sizes="<generated>"
+          />
+      </head>
       <body className={"dark:bg-[#0a0a0a]"}>
         {" "}
         <RootStyleRegistry>{children}</RootStyleRegistry>
